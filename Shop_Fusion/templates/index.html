@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block tittle %}
+Index Page 
+{% endblock tittle %}
+{% block content %}
+{% include "siledder.html" %}
+ <div class="continer my-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="mb-3" style="padding-left:20px;">Latest Trending Products</h4>
+                    <hr style="border-color:#b8bfc2;">
+                </div>
+            </div></div>
+            {% include "navbor/message.html" %}
+            {% for item in products %}
+                        <div class="col-md-4 col-lg-4 d-flex align-items-stretch" style="padding-left:40px;">
+                            <a {% if request.user.is_authenticated %} href="{% url "productdetailview" item.catagory.name item.name %}" {%endif%}style="text-decoration: none;">
+                            <div class="card my-3 w-100">
+                                {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="Product Image" style="width: 100%; height: 250px; object-fit:  contain;">
+                            {% else %}
+                                <img src="/static/default-image.jpg" alt="Default Image">
+                            {% endif %}
+                            <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ item.name }}</h5>
+                                    <p class="card-text"> 
+                                        <div class="d-flex justify-content-between">
+                                            <s><span style="font-weight: bold;  color: red;">Rs: {{ item.original_price | stringformat:'d' }}</span></s>
+                                            <span style=" font-weight: bold;background: green;color: white;padding: 2.5px;border-radius :5px;">Rs: {{ item.shelling_price | stringformat:'d' }}</span>
+                                        </div>
+
+                                        
+
+                                    </p>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+        
+    </div>
+ </div>
+
+{% endblock content %}

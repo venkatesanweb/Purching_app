@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block tittle %}
+Register Page 
+{% endblock tittle %}
+{% block content %}
+
+
+<div class="continer my-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="login-word">New User Login</h2>
+            {% include "navbor/message.html" %}
+        </div>
+    </div>
+    <section class="py-4 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="" class="form-label">User Name</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username">
+                           
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter Your Password">
+
+                            
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <p style="padding: 100px;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+ </div>
+
+
+
+{% endblock content %}

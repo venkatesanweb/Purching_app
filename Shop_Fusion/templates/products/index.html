@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+{% block title %}
+Index Page 
+{% endblock title %}
+{% block content %}
+
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{{cate_name}} Products</h4>
+                <hr style="border-color:#b8bfc2">
+                <div class="row"> 
+                   {% for item in products %}
+                        <div class="col-md-4 col-lg-4 d-flex align-items-stretch">
+                            <a href="{% url "productdetailview" cate_name item.name %}"style="text-decoration: none;">
+                            <div class="card my-3 w-100">
+                                {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="Product Image" style="width:100%; height: 250px; object-fit: scale-down;">
+                            {% else %}
+                                <img src="/static/default-image.jpg" alt="Default Image">
+                            {% endif %}
+                            <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ item.name }}</h5>
+                                    <p class="card-text"> 
+                                        <div class="d-flex justify-content-between">
+                                            <s><span style="font-weight: bold;  color: red;">Rs: {{ item.original_price | stringformat:'d' }}</span></s>
+                                            <span style=" font-weight: bold;background: green;color: white;padding: 2.5px;border-radius :5px;">Rs: {{ item.shelling_price | stringformat:'d' }}</span>
+                                        </div>
+
+                                        
+
+                                    </p>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr style="border-color:#b8bfc2;"> 
+            </div>
+        </div>
+    </div>  
+</section>
+
+{% endblock content %}
